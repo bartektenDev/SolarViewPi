@@ -2,19 +2,11 @@
    <head>
       <link rel="stylesheet" type="text/css" href="assets/styleUI.css">
       <script src="assets/dataload.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-      <script>
-         $(document).ready(function(){
-         	$.get("https://api.darksky.net/forecast/11b0a87a73edc45033c6dd08b105fe8a/42.3601,-71.0589", function(data, status){
-         		alert("Data: " + data + "\nStatus: " + status);
-         	});
-         });
-      </script>
       <meta charset="utf-8">
       <title>SolarViewPi</title>
    </head>
    <div class="header">
-      <a class="logo">SolarView</a>
+      <a class="logo">SolarViewPi</a>
       <a id="sharedDisplayIP">X.X.X.X</a>
       <div class="top_bar_view2">
          <img src="./assets/cloud.gif" width="55px" height="50px" id="connectionStatusIcon">
@@ -33,7 +25,7 @@
          <p>
             <button id="preferences" onclick="window.location.href = 'preferences.html';">Preferences</button>
       </div>
-      <div class="container_box">
+      <div class="box1">
          <a>Connected Devices: </a><a id="numOfDevices">null</a>
          <div class="listOfDevices">
             <table>
@@ -75,10 +67,20 @@
             </table>
          </div>
       </div>
-      <div class="container_box">
-         <a>Weather: </a><a id="readZIP">57</a><a>°F</a>
+      <div class="box2">
+		 <a>Today it's </a><a id="readTEMP">?</a><a>°F</a><a> and</a>
+		 <p>
+		 <a>it's </a><a id="readVISUAL">?</a><a> outside.</a>
          <p>
-            <button onclick="downloadWeatherData();">Get Weather</button>
+		 <a>Visbility Outside: </a><a id="readVISIBILITY">?</a><a>+ miles</a>
+         <p>
+		 <a>Wind Speed: </a><a id="readWINDSPEED">?</a><a> MPH</a>
+         <p>
+      </div>
+	  <div class="box4">
+		 <a>Running UpTime: </a><a id="readUPTIME">?</a><a></a>
+		 <p>
+            <button onclick="reboot();">Reboot Device</button>
          <p>
       </div>
    </body>

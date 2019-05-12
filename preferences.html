@@ -3,10 +3,10 @@
       <link rel="stylesheet" type="text/css" href="assets/styleUI.css">
       <script src="assets/dataload.js"></script>
       <meta charset="utf-8">
-      <title>SolarView</title>
+      <title>SolarViewPi</title>
    </head>
    <div class="header">
-      <a class="logo">SolarView</a>
+      <a class="logo">SolarViewPi</a>
       <a id="sharedDisplayIP">X.X.X.X</a>
       <div class="top_bar_view2">
          <img src="./assets/cloud.gif" width="55px" height="50px" id="connectionStatusIcon">
@@ -24,7 +24,7 @@
          <p>
             <button id="preferences" onclick="window.location.href = 'preferences.html';">Preferences</button>
       </div>
-      <div class="container_box">
+      <div class="box1">
          <a>Connected IP: </a><a id="readIP"></a>
          <p>
             <a>Change IP: </a><input id="ip_address"></input><br>
@@ -32,11 +32,13 @@
             <button id="save" onclick="apply_settings();">Apply</button>
          <p>
       </div>
-      <div class="container_box">
-         <a>Current Zip code: </a><a id="readZIP"></a>
+      <div class="box3">
+         <a>Current Latitude and Longitude: </a><a id="readZIP"></a>
          <p>
-            <a>Change Zip Code: </a><input id="zipcodebox"></input><br>
+            <a>Latitude: </a><input id="latbox"></input><br>
          <p>
+            <a>Longitude: </a><input id="longbox"></input><br>
+		 <p>
             <button id="save" onclick="apply_settings2();">Apply</button>
          <p>
       </div>
