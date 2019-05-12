@@ -1,0 +1,130 @@
+* {box-sizing: border-box;}
+
+body {
+  background: #c6e7ff;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button  {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 50px;
+  cursor: hand;
+  float: left;
+}
+
+.container_box  {
+  background-color: #fff;
+  border-color: coral;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: hand;
+  margin: 6px;
+}
+
+.navigate_bar {
+  color: navy;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.menuTitleDiv  {
+  display: inline-block;
+  margin-top: 1px;
+  margin-left: 50px;
+  top: 200px;
+  font-size: 40px;
+  color: black;
+}
+
+.contentView  {
+  margin-left: 200px;
+  border-color: coral;
+  border-radius: 10px;
+}
+
+/* everything below = Top Bar */
+.header {
+  overflow: hidden;
+  background: #fff;
+  padding: 15px 20px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#sharedDisplayIP{
+  background-color: #efefef;
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.top_bar_view {
+  float: right;
+}
+
+.top_bar_view2 {
+  float: left;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .top_bar_view {
+    float: none;
+  }
+}
+/* everything above = Top Bar */
+
+/* everything below = Table UI for devices */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #ddd;
+}
+/* everything above = Table UI for devices */

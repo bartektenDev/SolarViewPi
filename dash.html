@@ -1,0 +1,85 @@
+<html lang="en" dir="ltr">
+   <head>
+      <link rel="stylesheet" type="text/css" href="assets/styleUI.css">
+      <script src="assets/dataload.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      <script>
+         $(document).ready(function(){
+         	$.get("https://api.darksky.net/forecast/11b0a87a73edc45033c6dd08b105fe8a/42.3601,-71.0589", function(data, status){
+         		alert("Data: " + data + "\nStatus: " + status);
+         	});
+         });
+      </script>
+      <meta charset="utf-8">
+      <title>SolarViewPi</title>
+   </head>
+   <div class="header">
+      <a class="logo">SolarView</a>
+      <a id="sharedDisplayIP">X.X.X.X</a>
+      <div class="top_bar_view2">
+         <img src="./assets/cloud.gif" width="55px" height="50px" id="connectionStatusIcon">
+      </div>
+      <div class="top_bar_view">
+         <img src="./assets/prjLogo.png" width="50px" height="50px" id="">
+      </div>
+      <p id="latandlon">Please go to preferences and set latitude and longitude of your location.</p>
+   </div>
+   <body onload="setup();">
+      <div class="navigate_bar">
+         <div class="menuTitleDiv">
+            <a id="menuTitle">Dashboard</a>
+         </div>
+         <button id="dash" onclick="window.location.href = 'dash.html';">Dashboard</button>
+         <p>
+            <button id="preferences" onclick="window.location.href = 'preferences.html';">Preferences</button>
+      </div>
+      <div class="container_box">
+         <a>Connected Devices: </a><a id="numOfDevices">null</a>
+         <div class="listOfDevices">
+            <table>
+               <tr>
+                  <th>Device ID</th>
+                  <th>Power Usage</th>
+                  <th>Energy Used</th>
+               </tr>
+               <tr>
+                  <td>05F6F76E</td>
+                  <td>1.5%</td>
+                  <td>60w</td>
+               </tr>
+               <tr>
+                  <td>05F7120F</td>
+                  <td>3%</td>
+                  <td>120w</td>
+               </tr>
+               <tr>
+                  <td>05F6F76D</td>
+                  <td>0.9%</td>
+                  <td>41w</td>
+               </tr>
+               <tr>
+                  <td>05F6F76E</td>
+                  <td>1.5%</td>
+                  <td>60w</td>
+               </tr>
+               <tr>
+                  <td>05F7120F</td>
+                  <td>3%</td>
+                  <td>120w</td>
+               </tr>
+               <tr>
+                  <td>05F6F76D</td>
+                  <td>0.9%</td>
+                  <td>41w</td>
+               </tr>
+            </table>
+         </div>
+      </div>
+      <div class="container_box">
+         <a>Weather: </a><a id="readZIP">57</a><a>°F</a>
+         <p>
+            <button onclick="downloadWeatherData();">Get Weather</button>
+         <p>
+      </div>
+   </body>
+</html>

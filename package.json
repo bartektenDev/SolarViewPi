@@ -1,0 +1,17 @@
+{
+  "name": "solarviewpi",
+  "version": "1.0.0",
+  "description": "Solar Panel software for raspberry pi running Enecsys Inverters.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test command specified\" && exit 1"
+  },
+  "keywords": [
+    "SolarViewPi"
+  ],
+  "author": "Bart Tarasewicz",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}

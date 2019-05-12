@@ -1,0 +1,44 @@
+<html lang="en" dir="ltr">
+   <head>
+      <link rel="stylesheet" type="text/css" href="assets/styleUI.css">
+      <script src="assets/dataload.js"></script>
+      <meta charset="utf-8">
+      <title>SolarView</title>
+   </head>
+   <div class="header">
+      <a class="logo">SolarView</a>
+      <a id="sharedDisplayIP">X.X.X.X</a>
+      <div class="top_bar_view2">
+         <img src="./assets/cloud.gif" width="55px" height="50px" id="connectionStatusIcon">
+      </div>
+      <div class="top_bar_view">
+         <img src="./assets/prjLogo.png" width="50px" height="50px" id="">
+      </div>
+   </div>
+   <body onload="setup();">
+      <div class="navigate_bar">
+         <div class="menuTitleDiv">
+            <a id="menuTitle">Preferences</a>
+         </div>
+         <button id="dash" onclick="window.location.href = 'dash.html';">Dashboard</button>
+         <p>
+            <button id="preferences" onclick="window.location.href = 'preferences.html';">Preferences</button>
+      </div>
+      <div class="container_box">
+         <a>Connected IP: </a><a id="readIP"></a>
+         <p>
+            <a>Change IP: </a><input id="ip_address"></input><br>
+         <p>
+            <button id="save" onclick="apply_settings();">Apply</button>
+         <p>
+      </div>
+      <div class="container_box">
+         <a>Current Zip code: </a><a id="readZIP"></a>
+         <p>
+            <a>Change Zip Code: </a><input id="zipcodebox"></input><br>
+         <p>
+            <button id="save" onclick="apply_settings2();">Apply</button>
+         <p>
+      </div>
+   </body>
+</html>
