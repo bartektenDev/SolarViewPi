@@ -3,7 +3,7 @@ Solar panel software for raspberry pi to run Enecsys solar panel inverter data a
 
 **Demo Screenshots**
 :-------------------------:
-![](assets/dashimg.PN)
+![](assets/dashimg.PNG)
 
 <img src="assets/prefimg.PNG" width="100px" height="100px" align="right"/>
 
