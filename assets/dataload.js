@@ -4,9 +4,18 @@ var ip = "";
 
 function setup() {
 	readConfigFile();
-	dataPing();
-	readWeatherData();
-	grabData();
+	timer();
+}
+
+function timer()	{
+	var check = function(){
+		readConfigFile();
+		dataPing();
+		readWeatherData();
+		setTimeout(check, 5000); // check again in a second
+	}
+
+	check();
 }
 
 function readConfigFile() {
@@ -26,39 +35,16 @@ function readConfigFile() {
 
 				if (testRE && testRE.length > 1) {
 					var ipvar = testRE[1];
+					ip = ipvar;
 					if (document.getElementById("sharedDisplayIP")) {
 						document.getElementById("sharedDisplayIP").innerHTML = ipvar;
 					}
 					if (document.getElementById("readIP")) {
 						document.getElementById("readIP").innerHTML = ipvar;
 					}
+					dataPing();
+					readData();
 				}
-			}
-		}
-	};
-	rawFile.send(null);
-}
-
-function grabData() {
-	var file = "./assets/configip.p";
-	var rawFile = new XMLHttpRequest();
-	rawFile.open("GET", file, false);
-	rawFile.onreadystatechange = function () {
-		if (rawFile.readyState === 4) {
-			if (rawFile.status === 200 || rawFile.status == 0) {
-				var allText = rawFile.responseText;
-				//grab the ip value in the config.p file
-				var firstvariable = "<ip>";
-				var secondvariable = "</ip>";
-				var regExString = new RegExp("(?:" + firstvariable + ")(.*?)(?:" + secondvariable + ")", "ig");
-				var storeRawData = allText;
-				var testRE = regExString.exec(storeRawData);
-
-				if (testRE && testRE.length > 1) {
-					var ipvar = testRE[1];
-					ip = ipvar;
-				}
-				readData();
 			}
 		}
 	};
@@ -81,10 +67,10 @@ function grabData2() {
 				var testRE = regExString.exec(storeRawData);
 
 				if (testRE && testRE.length > 1) {
-					var ipvar = testRE[1];
-					ip = ipvar;
+					var latVar = testRE[1];
+					
 				}
-				readData();
+				
 			}
 		}
 	};
@@ -172,9 +158,11 @@ function apply_settings2() {
 
 	let writeStream = fs.createWriteStream('./assets/configlatlong.p');
 
-	var zipAdd = document.getElementById("zipcodebox").value;
-	if (zipAdd != "") {
-		writeStream.write('<zip>' + zipAdd + '</zip>', 'UTF-8');
+	var latAdd = document.getElementById("latbox").value;
+	var longAdd = document.getElementById("longbox").value;
+	
+	if (latAdd != "" || longAdd != "") {
+		writeStream.write('<lat>' + latAdd + '</lat>' + '\n' + '<long>' + longAdd + '</long>', 'UTF-8');
 
 		writeStream.on('finish', () => {
 			console.log('Applied new settings successfully!');
@@ -197,7 +185,7 @@ function dataPing() {
 	document.getElementById("connectionStatusIcon").src = "assets/cloud.gif";
 	document.getElementById("sharedDisplayIP").style.backgroundColor = "#efefef";
 
-	http.open("GET", "http://" + host, /*async*/ true);
+	http.open("GET", "http://" + host + "?n=1", /*async*/ true);
 	http.onreadystatechange = function () {
 		if (http.readyState == 4) {
 			var ended = new Date().getTime();
@@ -287,5 +275,5 @@ function readWeatherData()	{
 
 function reboot()	{
 	alert("The Enecsys solar panel main box is now going to reboot. Please wait 5-10 minutes till it comes back online. SolarViewPi will automatically reconnect to the box once it's available.");
-	
+	window.location.reload();
 }

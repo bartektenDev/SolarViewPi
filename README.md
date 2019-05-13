@@ -11,11 +11,11 @@ Solar panel software for raspberry pi to run Enecsys solar panel inverter data a
 :-------------------------:
 ![](assets/prefimg.PNG)
 
-**Status:** Ready! Stable version 2.0.0
+**Status:** Ready! Stable version 2.0.2
 
 **How to install**
 
-**Step 1.** Open cmd or git console and enter the following: 
+**Step 1.** Open cmd or git console and enter the following:
 ```
 git clone https://github.com/bartektenDev/SolarViewPi.git
 (mac users use sudo before) npm install
@@ -41,4 +41,3 @@ http://127.0.0.1
 ```
 
 **Step 5.** Everything will load up and it should load all the devices connected into your dashboard. Enjoy!
-

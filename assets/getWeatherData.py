@@ -15,7 +15,7 @@ def cleanSlate():
     else:
         print('no cache found...')
         getWeather()
-    
+
 def getWeather():
     latitude = "41.9747306"
     longitude = ",-88.0698165"
@@ -26,7 +26,7 @@ def getWeather():
     print(html)
     print('successfully read data!')
     f=open("currentweather.json", "a+")
-    f.write(html)     
+    f.write(html)
     f.close()
     timeOut();
 
@@ -35,7 +35,7 @@ def timeOut():
     print('Starting timer in 5 seconds..')
     time.sleep(5)
     print('Waiting 20 minutes till next data grab')
-    for i in xrange(1200,0,-1):
+    for i in xrange(15,0,-1):
         sys.stdout.write('Waiting ' +str(i)+' seconds till next weather grab')
         sys.stdout.flush()
         time.sleep(1)
