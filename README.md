@@ -16,14 +16,16 @@ This will be for getting the weather data and analytics. Then open your command 
 ```
 python getWeatherData.py
 ```
-And now go to /SolarViewPi/assets/configip.p and change the IP value to the Enecsys solar panel box IP and save the file.
+Leave this script running forever to always update the weather file in the background. And now go to /SolarViewPi/assets
+/configip.p and change the IP value to the Enecsys solar panel box IP and save the file.
 
 **Step 3.** Now in the terminal run this:
 ```
 http-server . -p 80
 ```
+This will start to run a local server to host the files off the raspberry pi.
 
-**Step 4. ** Lastly open your browser on your pi and enter this into your browser:
+**Step 4.** Lastly open your browser on your pi and enter this into your browser:
 ```
 http://127.0.0.1
 ```
