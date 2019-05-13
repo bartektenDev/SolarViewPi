@@ -1,6 +1,11 @@
 # SolarViewPi
 Solar panel software for raspberry pi to run Enecsys solar panel inverter data and analytics.
 
+**Demo Screenshots**
+<img src="assets/dashimg.PNG" width="100px" height="100px" align="right"/>
+
+<img src="assets/prefimg.PNG" width="100px" height="100px" align="right"/>
+
 **Status:** Ready! Stable version 2.0.0
 
 **How to install**
