@@ -1,9 +1,12 @@
 //Copyright and all rights all reserved to Bart Tarasewicz
 
+var ip = "";
+
 function setup() {
 	readConfigFile();
 	dataPing();
-	readWeatherData()
+	readWeatherData();
+	grabData();
 }
 
 function readConfigFile() {
@@ -89,43 +92,75 @@ function grabData2() {
 }
 
 function readData() {
-	Http.open("GET", "http://" + ip + "/ajax.xml");
-	Http.send();
-	Http.onreadystatechange = (e) => {
-		//scan the data and then identify whether we see how many devices
-		//are connected to the network and then display that to the User
-		var allText = Http.responseText;
-		alert(allText);
-		//grab the ip value in the config.p file
-		var firstvariable = "<devicesInNetwork>";
-		var secondvariable = "</devicesInNetwork>";
-		var regExString = new RegExp("(?:" + firstvariable + ")(.*?)(?:" + secondvariable + ")", "ig");
-		var storeRawData = allText;
-		var testRE = regExString.exec(storeRawData);
+	//this should be looped every second to have sorta async data, that is in quotes lmao
+	var file = "http://" + ip + "/assets/ajax.xml";
+	var rawFile = new XMLHttpRequest();
+	rawFile.open("GET", file, false);
+	rawFile.onreadystatechange = function () {
+		if (rawFile.readyState === 4) {
+			if (rawFile.status === 200 || rawFile.status == 0) {
+				var allText = rawFile.responseText;
+				
+				//grab the devices connected count
+				var firstvariable = "<devicesInNetwork>";
+				var secondvariable = "</devicesInNetwork>";
+				var regExString = new RegExp("(?:" + firstvariable + ")(.*?)(?:" + secondvariable + ")", "ig");
+				var storeRawData = allText;
+				var testRE = regExString.exec(storeRawData);
 
-		if (testRE && testRE.length > 1) {
-			var devicesConnected = testRE[1];
-			document.getElementById("numOfDevices").innerHTML = devicesConnected;
+				if (testRE && testRE.length > 1) {
+					var devicesConnected = testRE[1];
+					document.getElementById("numOfDevices").innerHTML = devicesConnected.fontcolor("#6863ff");
+				}
+			
+				//grab the running since last reset
+				var firstvariable2 = "<timeSinceReset>";
+				var secondvariable2 = "</timeSinceReset>";
+				var regExString2 = new RegExp("(?:" + firstvariable2 + ")(.*?)(?:" + secondvariable2 + ")", "ig");
+				var storeRawData2 = allText;
+				var testRE2 = regExString2.exec(storeRawData2);
+
+				if (testRE2 && testRE2.length > 1) {
+					var timeSinceReset = testRE2[1];
+					document.getElementById("readUPTIME").innerHTML = timeSinceReset.fontcolor("#6863ff");
+				}
+				
+				var climb;
+				for(climb=0;climb<devicesConnected;climb++)	{
+					//grab every device and add it to list
+					var firstvariable3 = "<device"+climb.toString()+">";
+					var secondvariable3 = "</device"+climb.toString()+">";
+					var regExString3 = new RegExp("(?:" + firstvariable3 + ")(.*?)(?:" + secondvariable3 + ")", "ig");
+					var storeRawData3 = allText;
+					var testRE3 = regExString3.exec(storeRawData3);
+
+					if (testRE3 && testRE3.length > 1) {
+						var deviceName = testRE3[1];
+						var startData = "dev"
+						var cleanData = climb.toString();
+						
+						var combo1 = startData.concat(cleanData);
+
+						var endData = "nam";
+						secondData = combo1.concat(endData);
+						
+						document.getElementById(""+secondData.toString()).innerHTML = deviceName.fontcolor("#6863ff");;
+					}
+					
+				}
+				
+			}
 		}
-	}
+	};
+	rawFile.send(null);
 }
 
 function apply_settings() {
-	const fs = require('fs');
 
-	let writeStream = fs.createWriteStream('./assets/configip.p');
-
+	
 	var ipAdd = document.getElementById("ip_address").value;
 	if (ipAdd != "") {
-		writeStream.write('<ip>' + ipAdd + '</ip>', 'UTF-8');
-
-		writeStream.on('finish', () => {
-			console.log('Applied new settings successfully!');
-			alert("Successfully applied new settings!");
-			readConfigFile();
-			dataPing();
-		});
-		writeStream.end();
+		writeFile('assets/configip.p', '<ip>' + ipAdd + '</ip>', Callback);
 	} else {
 		alert("Please enter a valid IP address!");
 	}
@@ -134,7 +169,7 @@ function apply_settings() {
 function apply_settings2() {
 	const fs = require('fs');
 
-	let writeStream = fs.createWriteStream('./assets/configzip.p');
+	let writeStream = fs.createWriteStream('./assets/configlatlong.p');
 
 	var zipAdd = document.getElementById("zipcodebox").value;
 	if (zipAdd != "") {
@@ -249,20 +284,7 @@ function readWeatherData()	{
 	rawFile.send(null);
 }
 
-function startUptime()	{
-	var counter = 0;//set this to what ever you want the start # to be
-	countUP ();//call the function once	
-	function countUP () {
-		counter++;//increment the counter by 1
-		setTimeout ( "countUP()", 1000 );//runs itsself after 1000 miliseconds
-		//console.log(counter);uncomment to can see it in action, only with firebug
-	}
+function reboot()	{
+	alert("The Enecsys solar panel main box is now going to reboot. Please wait 5-10 minutes till it comes back online. SolarViewPi will automatically reconnect to the box once it's available.");
+	
 }
-
-var counter = 0;//set this to what ever you want the start # to be
-	countUP ();//call the function once	
-	function countUP () {
-		counter++;//increment the counter by 1
-		setTimeout ( "countUP()", 1000 );//runs itsself after 1000 miliseconds
-		//console.log(counter);uncomment to can see it in action, only with firebug
-	}

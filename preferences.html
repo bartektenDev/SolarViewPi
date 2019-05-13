@@ -25,12 +25,14 @@
             <button id="preferences" onclick="window.location.href = 'preferences.html';">Preferences</button>
       </div>
       <div class="box1">
+	  <form action="/assets/mkip.php" method="post">
          <a>Connected IP: </a><a id="readIP"></a>
          <p>
-            <a>Change IP: </a><input id="ip_address"></input><br>
+            <a>Change IP: </a><input name="ipADDRESS" id="ip_address"></input><br>
          <p>
-            <button id="save" onclick="apply_settings();">Apply</button>
+            <button id="save" type="submit">Apply</button>
          <p>
+	  </form>
       </div>
       <div class="box3">
          <a>Current Latitude and Longitude: </a><a id="readZIP"></a>
