@@ -8,7 +8,7 @@ Solar panel software for raspberry pi to run Enecsys solar panel inverter data a
 **Step 1.** Open cmd or git console and enter the following: 
 ```
 git clone https://github.com/bartektenDev/SolarViewPi.git
-(mac users use sudp before) npm install
+(mac users use sudo before) npm install
 ```
 
 **Step 2.** Now run the go into /SolarViewPi/assets/getWeatherData.py and change the latitude and longitude of coordinates of your choosing.
