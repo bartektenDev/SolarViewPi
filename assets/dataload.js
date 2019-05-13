@@ -93,7 +93,8 @@ function grabData2() {
 
 function readData() {
 	//this should be looped every second to have sorta async data, that is in quotes lmao
-	var file = "http://" + ip + "/assets/ajax.xml";
+	
+	var file = "http://" + ip + "/ajax.xml";
 	var rawFile = new XMLHttpRequest();
 	rawFile.open("GET", file, false);
 	rawFile.onreadystatechange = function () {
